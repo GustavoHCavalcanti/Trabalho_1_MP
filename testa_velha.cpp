@@ -50,7 +50,12 @@ TEST(VencedorOVertical, VerificaVitoriaVerticalO) {
     EXPECT_EQ(resultado, 2); // O venceu na coluna 2
 }
 
-
+TEST(VitoriaDiagonalO, VerificaVitoriaDiagonalO) {
+    int matriz[3][3] = {{2, 1, 0}, {1, 2, 0}, {0, 0, 2}};
+    JogoDaVelha jogo;
+    int resultado = jogo.verificar_jogo(matriz);
+    EXPECT_EQ(resultado, 2); // O venceu na diagonal
+}
 
 
 
