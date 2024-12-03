@@ -3,7 +3,8 @@ TARGET = testa_velha
 
 # Compilador e flags de compilação
 CXX = g++
-CXXFLAGS = -std=c++11 -Wall
+CXXFLAGS = -std=c++14 -Wall -I/usr/local/include
+LDFLAGS = -L/usr/local/lib -lgtest -lgtest_main -pthread
 
 # Arquivos fonte e objeto
 SOURCES = testa_velha.cpp velha.cpp
@@ -15,36 +16,15 @@ all: $(TARGET)
 
 # Regra para compilar o executável final
 $(TARGET): $(OBJECTS) testa_velha.cpp
-	$(CXX) $(CXXFLAGS) $(OBJECTS) testa_velha.cpp -o $(TARGET)
+	$(CXX) $(CXXFLAGS) $(OBJECTS) testa_velha.cpp $(LDFLAGS) -o $(TARGET)
 
 # Compilação do arquivo objeto
 velha.o: velha.cpp velha.hpp
 	$(CXX) $(CXXFLAGS) -c velha.cpp
 
-# Teste do programa
+# Teste com o Google Test
 test: $(TARGET)
 	./$(TARGET)
-
-# Análise de estilo com cpplint
-cpplint:
-	cpplint --exclude=catch.hpp $(SOURCES)
-
-# Cobertura de código com gcov
-gcov: $(SOURCES)
-	$(CXX) $(CXXFLAGS) -fprofile-arcs -ftest-coverage -c velha.cpp
-	$(CXX) $(CXXFLAGS) -fprofile-arcs -ftest-coverage velha.o testa_velha.cpp -o $(TARGET)
-	./$(TARGET)
-	gcov *.cpp
-
-# Debug com gdb
-debug: $(SOURCES)
-	$(CXX) $(CXXFLAGS) -g -c velha.cpp
-	$(CXX) $(CXXFLAGS) -g velha.o testa_velha.cpp -o $(TARGET)
-	gdb ./$(TARGET)
-
-# Verificação de memória com valgrind
-valgrind: $(TARGET)
-	valgrind --leak-check=yes --log-file=valgrind.rpt ./$(TARGET)
 
 # Limpeza dos arquivos gerados
 clean:
