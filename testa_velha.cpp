@@ -57,5 +57,12 @@ TEST(VitoriaDiagonalO, VerificaVitoriaDiagonalO) {
     EXPECT_EQ(resultado, 2); // O venceu na diagonal
 }
 
+TEST(JogoNaoCompletado, VerificaJogoNaoCompletado) {
+    int matriz[3][3] = {{1, 2, 1}, {2, 0, 0}, {1, 2, 0}};
+    JogoDaVelha jogo;
+    int resultado = jogo.verificar_jogo(matriz);
+    EXPECT_EQ(resultado, -1); // Jogo não completado
+}
+
 
 
