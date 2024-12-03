@@ -35,3 +35,13 @@ TEST(JogoImpossivel, VerificaJogoImpossivel) {
     int resultado = jogo.verificar_jogo(matriz);
     EXPECT_EQ(resultado, -2); // Jogo impossível
 }
+
+TEST(VencedorXHorizontal, VerificaVitoriaHorizontalX) {
+    int matriz[3][3] = {{1, 1, 1}, {2, 2, 0}, {0, 0, 0}};
+    JogoDaVelha jogo;
+    int resultado = jogo.verificar_jogo(matriz);
+    EXPECT_EQ(resultado, 1); // X venceu na linha 1
+}
+
+
+

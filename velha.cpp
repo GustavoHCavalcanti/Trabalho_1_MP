@@ -12,7 +12,10 @@ int JogoDaVelha::verificar_jogo(int matriz[3][3]) {
         }
     }
 
-    // Valida número de peças
+    // Depuração - Verificar número de peças
+    std::cout << "X: " << num_x << " O: " << num_o << std::endl;
+
+    // Validação do número de peças
     if (num_x - num_o > 1 || num_o - num_x > 1) {
         return -2; // Jogo impossível
     }
@@ -39,23 +42,33 @@ int JogoDaVelha::verificar_jogo(int matriz[3][3]) {
         if (matriz[0][2] == 2) vencedor_o = true;
     }
 
-    if ((vencedor_x && vencedor_o) || (vencedor_x && num_x == num_o) || (vencedor_o && num_x > num_o)) {
+    // Depuração - Verificar se há vencedor
+    std::cout << "Vencedor X: " << vencedor_x << " Vencedor O: " << vencedor_o << std::endl;
+
+    // Verificação de jogo impossível: 
+    if ((vencedor_x && vencedor_o) || (vencedor_x && num_x <= num_o) || (vencedor_o && num_x > num_o)) {
         return -2; // Jogo impossível
     }
 
+    // Se X venceu
     if (vencedor_x) return 1; // X venceu
+    // Se O venceu
     if (vencedor_o) return 2; // O venceu
 
+    // Verifica se há empate
     bool empate = true;
     for (int i = 0; i < 3; i++) {
         for (int j = 0; j < 3; j++) {
-            if (matriz[i][j] == 0) empate = false;
+            if (matriz[i][j] == 0) empate = false; // Se houver uma casa vazia, não é empate
         }
     }
     if (empate) return 0; // Empate
 
+    // Caso não tenha terminado o jogo, retorna indefinido
     return -1; // Jogo indefinido
 }
+
+
 
 
 
