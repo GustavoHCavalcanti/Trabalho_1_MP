@@ -3,23 +3,20 @@ TARGET = testa_velha
 
 # Compilador e flags de compilação
 CXX = g++
-CXXFLAGS = -std=c++14 -Wall -I/usr/local/include
+CXXFLAGS = -std=c++14 -Wall -g -I/usr/local/include
 LDFLAGS = -L/usr/local/lib -lgtest -lgtest_main -pthread
 
 # Arquivos fonte e objeto
 SOURCES = testa_velha.cpp velha.cpp
 OBJECTS = velha.o
 
-# Diretório para arquivos de cobertura
-COVERAGE_DIR = coverage
-
 # Regra padrão - compilar e executar
-all: $(TARGET) move_coverage_files
+all: $(TARGET)
 	./$(TARGET)
 
 # Regra para compilar o executável final
 $(TARGET): $(OBJECTS) testa_velha.cpp
-	$(CXX) $(CXXFLAGS) -ftest-coverage -fprofile-arcs $(OBJECTS) testa_velha.cpp $(LDFLAGS) -o $(TARGET)
+	$(CXX) $(CXXFLAGS) $(OBJECTS) testa_velha.cpp $(LDFLAGS) -o $(TARGET)
 
 # Compilação do arquivo objeto
 velha.o: velha.cpp velha.hpp
@@ -29,16 +26,20 @@ velha.o: velha.cpp velha.hpp
 test: $(TARGET)
 	./$(TARGET)
 
-# Mover arquivos de cobertura para o diretório 'coverage'
-move_coverage_files:
-	mkdir -p $(COVERAGE_DIR)
-	mv *.gcda *.gcno *.gcov $(COVERAGE_DIR)/ 2>/dev/null || true
+# Limpeza dos arquivos gerados
+clean:
+	rm -rf *.o *.exe *.gc* $(TARGET)
 
-# Limpeza dos arquivos de cobertura
-clean_coverage:
-	rm -rf $(COVERAGE_DIR)
+# Regra para rodar o Valgrind
+valgrind:
+	valgrind ./$(TARGET)
 
-# Limpeza geral
-clean: clean_coverage
-	rm -f *.o *.exe $(TARGET)
+# Verificação de cobertura com gcov
+coverage: $(TARGET)
+	./$(TARGET)
+	gcov testa_velha.cpp
+	gcov velha.cpp
 
+# Regra para rodar o cppcheck
+cppcheck:
+	cppcheck --enable=warning .
