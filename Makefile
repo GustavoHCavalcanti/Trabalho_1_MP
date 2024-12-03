@@ -10,13 +10,16 @@ LDFLAGS = -L/usr/local/lib -lgtest -lgtest_main -pthread
 SOURCES = testa_velha.cpp velha.cpp
 OBJECTS = velha.o
 
+# Diretório para arquivos de cobertura
+COVERAGE_DIR = coverage
+
 # Regra padrão - compilar e executar
-all: $(TARGET)
+all: $(TARGET) move_coverage_files
 	./$(TARGET)
 
 # Regra para compilar o executável final
 $(TARGET): $(OBJECTS) testa_velha.cpp
-	$(CXX) $(CXXFLAGS) $(OBJECTS) testa_velha.cpp $(LDFLAGS) -o $(TARGET)
+	$(CXX) $(CXXFLAGS) -ftest-coverage -fprofile-arcs $(OBJECTS) testa_velha.cpp $(LDFLAGS) -o $(TARGET)
 
 # Compilação do arquivo objeto
 velha.o: velha.cpp velha.hpp
@@ -26,6 +29,16 @@ velha.o: velha.cpp velha.hpp
 test: $(TARGET)
 	./$(TARGET)
 
-# Limpeza dos arquivos gerados
-clean:
-	rm -rf *.o *.exe *.gc* $(TARGET)
+# Mover arquivos de cobertura para o diretório 'coverage'
+move_coverage_files:
+	mkdir -p $(COVERAGE_DIR)
+	mv *.gcda *.gcno *.gcov $(COVERAGE_DIR)/ 2>/dev/null || true
+
+# Limpeza dos arquivos de cobertura
+clean_coverage:
+	rm -rf $(COVERAGE_DIR)
+
+# Limpeza geral
+clean: clean_coverage
+	rm -f *.o *.exe $(TARGET)
+
