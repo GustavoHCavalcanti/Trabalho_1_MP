@@ -1,0 +1,234 @@
+        -:    0:Source:testa_velha.cpp
+        -:    0:Graph:testa_velha.gcno
+        -:    0:Data:testa_velha.gcda
+        -:    0:Runs:3
+        -:    1:#include "velha.hpp"
+        -:    2:#include <gtest/gtest.h>
+        -:    3:
+       12:    4:TEST(VencedorX, VerificaVitoriaX) {
+        3:    5:    int matriz[3][3] = {{1, 1, 1}, {0, 2, 0}, {2, 0, 0}};
+        -:    6:    JogoDaVelha jogo; // Cria um objeto da classe
+        3:    7:    int resultado = jogo.verificar_jogo(matriz);
+       3*:    8:    EXPECT_EQ(resultado, 1); // X venceu
+        3:    9:}
+------------------
+_ZN31VencedorX_VerificaVitoriaX_TestC2Ev:
+        3:    4:TEST(VencedorX, VerificaVitoriaX) {
+------------------
+_ZN31VencedorX_VerificaVitoriaX_TestD0Ev:
+        3:    4:TEST(VencedorX, VerificaVitoriaX) {
+------------------
+_ZN31VencedorX_VerificaVitoriaX_TestD2Ev:
+        3:    4:TEST(VencedorX, VerificaVitoriaX) {
+------------------
+_ZN31VencedorX_VerificaVitoriaX_Test8TestBodyEv:
+        3:    4:TEST(VencedorX, VerificaVitoriaX) {
+        3:    5:    int matriz[3][3] = {{1, 1, 1}, {0, 2, 0}, {2, 0, 0}};
+        -:    6:    JogoDaVelha jogo; // Cria um objeto da classe
+        3:    7:    int resultado = jogo.verificar_jogo(matriz);
+       3*:    8:    EXPECT_EQ(resultado, 1); // X venceu
+        3:    9:}
+------------------
+        -:   10:
+       12:   11:TEST(VencedorO, VerificaVitoriaO) {
+        3:   12:    int matriz[3][3] = {{2, 2, 2}, {0, 1, 0}, {1, 0, 0}};
+        -:   13:    JogoDaVelha jogo;
+        3:   14:    int resultado = jogo.verificar_jogo(matriz);
+       3*:   15:    EXPECT_EQ(resultado, 2); // O venceu
+        3:   16:}
+------------------
+_ZN31VencedorO_VerificaVitoriaO_TestC2Ev:
+        3:   11:TEST(VencedorO, VerificaVitoriaO) {
+------------------
+_ZN31VencedorO_VerificaVitoriaO_TestD0Ev:
+        3:   11:TEST(VencedorO, VerificaVitoriaO) {
+------------------
+_ZN31VencedorO_VerificaVitoriaO_TestD2Ev:
+        3:   11:TEST(VencedorO, VerificaVitoriaO) {
+------------------
+_ZN31VencedorO_VerificaVitoriaO_Test8TestBodyEv:
+        3:   11:TEST(VencedorO, VerificaVitoriaO) {
+        3:   12:    int matriz[3][3] = {{2, 2, 2}, {0, 1, 0}, {1, 0, 0}};
+        -:   13:    JogoDaVelha jogo;
+        3:   14:    int resultado = jogo.verificar_jogo(matriz);
+       3*:   15:    EXPECT_EQ(resultado, 2); // O venceu
+        3:   16:}
+------------------
+        -:   17:
+       12:   18:TEST(Empate, VerificaEmpate) {
+        3:   19:    int matriz[3][3] = {{1, 2, 1}, {1, 2, 2}, {2, 1, 1}};
+        -:   20:    JogoDaVelha jogo;
+        3:   21:    int resultado = jogo.verificar_jogo(matriz);
+       3*:   22:    EXPECT_EQ(resultado, 0); // Jogo empatado
+        3:   23:}
+------------------
+_ZN26Empate_VerificaEmpate_TestC2Ev:
+        3:   18:TEST(Empate, VerificaEmpate) {
+------------------
+_ZN26Empate_VerificaEmpate_TestD0Ev:
+        3:   18:TEST(Empate, VerificaEmpate) {
+------------------
+_ZN26Empate_VerificaEmpate_TestD2Ev:
+        3:   18:TEST(Empate, VerificaEmpate) {
+------------------
+_ZN26Empate_VerificaEmpate_Test8TestBodyEv:
+        3:   18:TEST(Empate, VerificaEmpate) {
+        3:   19:    int matriz[3][3] = {{1, 2, 1}, {1, 2, 2}, {2, 1, 1}};
+        -:   20:    JogoDaVelha jogo;
+        3:   21:    int resultado = jogo.verificar_jogo(matriz);
+       3*:   22:    EXPECT_EQ(resultado, 0); // Jogo empatado
+        3:   23:}
+------------------
+        -:   24:
+       12:   25:TEST(JogoIndefinido, VerificaJogoIndefinido) {
+        3:   26:    int matriz[3][3] = {{1, 2, 0}, {1, 0, 2}, {2, 1, 0}};
+        -:   27:    JogoDaVelha jogo;
+        3:   28:    int resultado = jogo.verificar_jogo(matriz);
+       3*:   29:    EXPECT_EQ(resultado, -1); // Jogo indefinido
+        3:   30:}
+------------------
+_ZN42JogoIndefinido_VerificaJogoIndefinido_TestC2Ev:
+        3:   25:TEST(JogoIndefinido, VerificaJogoIndefinido) {
+------------------
+_ZN42JogoIndefinido_VerificaJogoIndefinido_TestD0Ev:
+        3:   25:TEST(JogoIndefinido, VerificaJogoIndefinido) {
+------------------
+_ZN42JogoIndefinido_VerificaJogoIndefinido_TestD2Ev:
+        3:   25:TEST(JogoIndefinido, VerificaJogoIndefinido) {
+------------------
+_ZN42JogoIndefinido_VerificaJogoIndefinido_Test8TestBodyEv:
+        3:   25:TEST(JogoIndefinido, VerificaJogoIndefinido) {
+        3:   26:    int matriz[3][3] = {{1, 2, 0}, {1, 0, 2}, {2, 1, 0}};
+        -:   27:    JogoDaVelha jogo;
+        3:   28:    int resultado = jogo.verificar_jogo(matriz);
+       3*:   29:    EXPECT_EQ(resultado, -1); // Jogo indefinido
+        3:   30:}
+------------------
+        -:   31:
+       12:   32:TEST(JogoImpossivel, VerificaJogoImpossivel) {
+        3:   33:    int matriz[3][3] = {{1, 1, 1}, {2, 2, 2}, {0, 0, 0}};
+        -:   34:    JogoDaVelha jogo;
+        3:   35:    int resultado = jogo.verificar_jogo(matriz);
+       3*:   36:    EXPECT_EQ(resultado, -2); // Jogo impossível
+        3:   37:}
+------------------
+_ZN42JogoImpossivel_VerificaJogoImpossivel_TestC2Ev:
+        3:   32:TEST(JogoImpossivel, VerificaJogoImpossivel) {
+------------------
+_ZN42JogoImpossivel_VerificaJogoImpossivel_TestD0Ev:
+        3:   32:TEST(JogoImpossivel, VerificaJogoImpossivel) {
+------------------
+_ZN42JogoImpossivel_VerificaJogoImpossivel_TestD2Ev:
+        3:   32:TEST(JogoImpossivel, VerificaJogoImpossivel) {
+------------------
+_ZN42JogoImpossivel_VerificaJogoImpossivel_Test8TestBodyEv:
+        3:   32:TEST(JogoImpossivel, VerificaJogoImpossivel) {
+        3:   33:    int matriz[3][3] = {{1, 1, 1}, {2, 2, 2}, {0, 0, 0}};
+        -:   34:    JogoDaVelha jogo;
+        3:   35:    int resultado = jogo.verificar_jogo(matriz);
+       3*:   36:    EXPECT_EQ(resultado, -2); // Jogo impossível
+        3:   37:}
+------------------
+        -:   38:
+       12:   39:TEST(VencedorXHorizontal, VerificaVitoriaHorizontalX) {
+        3:   40:    int matriz[3][3] = {{1, 1, 1}, {2, 2, 0}, {0, 0, 0}};
+        -:   41:    JogoDaVelha jogo;
+        3:   42:    int resultado = jogo.verificar_jogo(matriz);
+       3*:   43:    EXPECT_EQ(resultado, 1); // X venceu na linha 1
+        3:   44:}
+------------------
+_ZN51VencedorXHorizontal_VerificaVitoriaHorizontalX_TestC2Ev:
+        3:   39:TEST(VencedorXHorizontal, VerificaVitoriaHorizontalX) {
+------------------
+_ZN51VencedorXHorizontal_VerificaVitoriaHorizontalX_TestD0Ev:
+        3:   39:TEST(VencedorXHorizontal, VerificaVitoriaHorizontalX) {
+------------------
+_ZN51VencedorXHorizontal_VerificaVitoriaHorizontalX_TestD2Ev:
+        3:   39:TEST(VencedorXHorizontal, VerificaVitoriaHorizontalX) {
+------------------
+_ZN51VencedorXHorizontal_VerificaVitoriaHorizontalX_Test8TestBodyEv:
+        3:   39:TEST(VencedorXHorizontal, VerificaVitoriaHorizontalX) {
+        3:   40:    int matriz[3][3] = {{1, 1, 1}, {2, 2, 0}, {0, 0, 0}};
+        -:   41:    JogoDaVelha jogo;
+        3:   42:    int resultado = jogo.verificar_jogo(matriz);
+       3*:   43:    EXPECT_EQ(resultado, 1); // X venceu na linha 1
+        3:   44:}
+------------------
+        -:   45:
+       12:   46:TEST(VencedorOVertical, VerificaVitoriaVerticalO) {
+        3:   47:    int matriz[3][3] = {{1, 2, 1}, {1, 2, 0}, {0, 2, 0}};
+        -:   48:    JogoDaVelha jogo;
+        3:   49:    int resultado = jogo.verificar_jogo(matriz);
+       3*:   50:    EXPECT_EQ(resultado, 2); // O venceu na coluna 2
+        3:   51:}
+------------------
+_ZN47VencedorOVertical_VerificaVitoriaVerticalO_TestC2Ev:
+        3:   46:TEST(VencedorOVertical, VerificaVitoriaVerticalO) {
+------------------
+_ZN47VencedorOVertical_VerificaVitoriaVerticalO_TestD0Ev:
+        3:   46:TEST(VencedorOVertical, VerificaVitoriaVerticalO) {
+------------------
+_ZN47VencedorOVertical_VerificaVitoriaVerticalO_TestD2Ev:
+        3:   46:TEST(VencedorOVertical, VerificaVitoriaVerticalO) {
+------------------
+_ZN47VencedorOVertical_VerificaVitoriaVerticalO_Test8TestBodyEv:
+        3:   46:TEST(VencedorOVertical, VerificaVitoriaVerticalO) {
+        3:   47:    int matriz[3][3] = {{1, 2, 1}, {1, 2, 0}, {0, 2, 0}};
+        -:   48:    JogoDaVelha jogo;
+        3:   49:    int resultado = jogo.verificar_jogo(matriz);
+       3*:   50:    EXPECT_EQ(resultado, 2); // O venceu na coluna 2
+        3:   51:}
+------------------
+        -:   52:
+       12:   53:TEST(VitoriaDiagonalO, VerificaVitoriaDiagonalO) {
+        3:   54:    int matriz[3][3] = {{2, 1, 0}, {1, 2, 0}, {0, 0, 2}};
+        -:   55:    JogoDaVelha jogo;
+        3:   56:    int resultado = jogo.verificar_jogo(matriz);
+       3*:   57:    EXPECT_EQ(resultado, 2); // O venceu na diagonal
+        3:   58:}
+------------------
+_ZN46VitoriaDiagonalO_VerificaVitoriaDiagonalO_TestC2Ev:
+        3:   53:TEST(VitoriaDiagonalO, VerificaVitoriaDiagonalO) {
+------------------
+_ZN46VitoriaDiagonalO_VerificaVitoriaDiagonalO_TestD0Ev:
+        3:   53:TEST(VitoriaDiagonalO, VerificaVitoriaDiagonalO) {
+------------------
+_ZN46VitoriaDiagonalO_VerificaVitoriaDiagonalO_TestD2Ev:
+        3:   53:TEST(VitoriaDiagonalO, VerificaVitoriaDiagonalO) {
+------------------
+_ZN46VitoriaDiagonalO_VerificaVitoriaDiagonalO_Test8TestBodyEv:
+        3:   53:TEST(VitoriaDiagonalO, VerificaVitoriaDiagonalO) {
+        3:   54:    int matriz[3][3] = {{2, 1, 0}, {1, 2, 0}, {0, 0, 2}};
+        -:   55:    JogoDaVelha jogo;
+        3:   56:    int resultado = jogo.verificar_jogo(matriz);
+       3*:   57:    EXPECT_EQ(resultado, 2); // O venceu na diagonal
+        3:   58:}
+------------------
+        -:   59:
+       12:   60:TEST(JogoNaoCompletado, VerificaJogoNaoCompletado) {
+        3:   61:    int matriz[3][3] = {{1, 2, 1}, {2, 0, 0}, {1, 2, 0}};
+        -:   62:    JogoDaVelha jogo;
+        3:   63:    int resultado = jogo.verificar_jogo(matriz);
+       3*:   64:    EXPECT_EQ(resultado, -1); // Jogo não completado
+        3:   65:}
+------------------
+_ZN48JogoNaoCompletado_VerificaJogoNaoCompletado_TestC2Ev:
+        3:   60:TEST(JogoNaoCompletado, VerificaJogoNaoCompletado) {
+------------------
+_ZN48JogoNaoCompletado_VerificaJogoNaoCompletado_TestD0Ev:
+        3:   60:TEST(JogoNaoCompletado, VerificaJogoNaoCompletado) {
+------------------
+_ZN48JogoNaoCompletado_VerificaJogoNaoCompletado_TestD2Ev:
+        3:   60:TEST(JogoNaoCompletado, VerificaJogoNaoCompletado) {
+------------------
+_ZN48JogoNaoCompletado_VerificaJogoNaoCompletado_Test8TestBodyEv:
+        3:   60:TEST(JogoNaoCompletado, VerificaJogoNaoCompletado) {
+        3:   61:    int matriz[3][3] = {{1, 2, 1}, {2, 0, 0}, {1, 2, 0}};
+        -:   62:    JogoDaVelha jogo;
+        3:   63:    int resultado = jogo.verificar_jogo(matriz);
+       3*:   64:    EXPECT_EQ(resultado, -1); // Jogo não completado
+        3:   65:}
+------------------
+        -:   66:
+        -:   67:
+        -:   68:
