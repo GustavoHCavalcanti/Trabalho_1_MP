@@ -1,82 +1,37 @@
-// testa_velha.cpp
-#include <iostream>
 #include "velha.hpp"
+#include <gtest/gtest.h>
 
-void teste_vencedor_x() {
-    int matriz[3][3] = {
-        {1, 0, 0},
-        {1, 0, 0},
-        {1, 0, 0}
-    };
-    int resultado = JogoDaVelha::verificar_jogo(matriz);
-    if (resultado == 1) {
-        std::cout << "Teste passou: O vencedor é X\n";
-    } else {
-        std::cout << "Teste falhou\n";
-    }
+TEST(VencedorX, VerificaVitoriaX) {
+    int matriz[3][3] = {{1, 1, 1}, {0, 2, 0}, {2, 0, 0}};
+    JogoDaVelha jogo; // Cria um objeto da classe
+    int resultado = jogo.verificar_jogo(matriz);
+    EXPECT_EQ(resultado, 1); // X venceu
 }
 
-void teste_vencedor_o() {
-    int matriz[3][3] = {
-        {2, 2, 2},
-        {0, 1, 0},
-        {1, 0, 1}
-    };
-    int resultado = JogoDaVelha::verificar_jogo(matriz);
-    if (resultado == 2) {
-        std::cout << "Teste passou: O vencedor é O\n";
-    } else {
-        std::cout << "Teste falhou\n";
-    }
+TEST(VencedorO, VerificaVitoriaO) {
+    int matriz[3][3] = {{2, 2, 2}, {0, 1, 0}, {1, 0, 0}};
+    JogoDaVelha jogo;
+    int resultado = jogo.verificar_jogo(matriz);
+    EXPECT_EQ(resultado, 2); // O venceu
 }
 
-void teste_empate() {
-    int matriz[3][3] = {
-        {1, 2, 1},
-        {2, 1, 2},
-        {2, 1, 1}
-    };
-    int resultado = JogoDaVelha::verificar_jogo(matriz);
-    if (resultado == 0) {
-        std::cout << "Teste passou: O jogo empatou\n";
-    } else {
-        std::cout << "Teste falhou\n";
-    }
+TEST(Empate, VerificaEmpate) {
+    int matriz[3][3] = {{1, 2, 1}, {1, 2, 2}, {2, 1, 1}};
+    JogoDaVelha jogo;
+    int resultado = jogo.verificar_jogo(matriz);
+    EXPECT_EQ(resultado, 0); // Jogo empatado
 }
 
-void teste_indefinido() {
-    int matriz[3][3] = {
-        {1, 2, 0},
-        {1, 0, 0},
-        {2, 0, 0}
-    };
-    int resultado = JogoDaVelha::verificar_jogo(matriz);
-    if (resultado == -1) {
-        std::cout << "Teste passou: O jogo está indefinido\n";
-    } else {
-        std::cout << "Teste falhou\n";
-    }
+TEST(JogoIndefinido, VerificaJogoIndefinido) {
+    int matriz[3][3] = {{1, 2, 0}, {1, 0, 2}, {2, 1, 0}};
+    JogoDaVelha jogo;
+    int resultado = jogo.verificar_jogo(matriz);
+    EXPECT_EQ(resultado, -1); // Jogo indefinido
 }
 
-void teste_impossivel() {
-    int matriz[3][3] = {
-        {1, 1, 1},
-        {1, 1, 1},
-        {1, 1, 1}
-    };
-    int resultado = JogoDaVelha::verificar_jogo(matriz);
-    if (resultado == -2) {
-        std::cout << "Teste passou: O jogo é impossível\n";
-    } else {
-        std::cout << "Teste falhou\n";
-    }
-}
-
-int main() {
-    teste_vencedor_x();
-    teste_vencedor_o();
-    teste_empate();
-    teste_indefinido();
-    teste_impossivel();
-    return 0;
+TEST(JogoImpossivel, VerificaJogoImpossivel) {
+    int matriz[3][3] = {{1, 1, 1}, {2, 2, 2}, {0, 0, 0}};
+    JogoDaVelha jogo;
+    int resultado = jogo.verificar_jogo(matriz);
+    EXPECT_EQ(resultado, -2); // Jogo impossível
 }
